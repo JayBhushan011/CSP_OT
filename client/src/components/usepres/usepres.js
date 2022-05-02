@@ -1,15 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import "./usepres.css"
+import web3 from "../../web3"
+import mediset from "../../mediset"
 
 function UsePrescription(){
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const [plusSign, setPlusSign] = useState(0);
 
+    const [message,setMessage] = useState();
 
-    const onSubmit = data => console.log(data); //data variable to be put on block
+    const onSubmit = async (event) => {
+      console.log(event); 
+      async function getMessage(){
 
+        const message = await mediset.methods.getPres(event.PatientID).call();
+        setMessage(message);
+        console.log(message);
+      }
+      getMessage();
+    }
+
+
+    
 
 
     return (
@@ -26,6 +40,8 @@ function UsePrescription(){
 
 
     <input className="input-class" type="submit" value="Request Prescription" /><br />
+
+    <h1> {message} </h1>
 
     
     </form>

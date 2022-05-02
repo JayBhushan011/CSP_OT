@@ -1,16 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import "./createpres.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSolid, faPlus } from '@fortawesome/free-solid-svg-icons'
-
+import web3 from "../../web3"
+import mediset from "../../mediset"
 
 function CreatePrescription(){
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const [plusSign, setPlusSign] = useState(0);
 
 
-    const onSubmit = data => console.log(data); //data variable to be put on block
+    const onSubmit = async (event) => {
+    
+      const accounts = await web3.eth.getAccounts();
+
+      const txn = await mediset.methods.uploadPres(event.PatientID,JSON.stringify(event.Medicine)).send( {from: accounts[0]});
+
+      const message = await mediset.methods.message().call();
+      if (message=="Hi there!"){
+        alert("The prescription for" + event.PatientID + "has been added! ")
+      }
+    }
 
 
 
