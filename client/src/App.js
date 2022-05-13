@@ -7,8 +7,7 @@ import {
 
 import Navbar from "./components/navbar/navbar";
 import Homepage from "./components/homepage/homepage"
-import CreatePrescription from "./components/createprescription/createpres"
-import UsePrescription from "./components/usepres/usepres"
+import Receiver from "./components/receiver/receiver";
 
 function App() {
   return (
@@ -17,10 +16,9 @@ function App() {
     <Routes>
         <Route path = "/" element={<Navigate to="/home" /> } />
         <Route path="/home" element = {<Homepage />} />
+        <Route path="/receive" element = {<Receiver />} />
 
-        <Route path="/createprescription" element={<CreatePrescription /> } /> 
-        <Route path="/useprescription" element={<UsePrescription /> } /> 
-     
+        
     </Routes>
   </BrowserRouter>
   );
