@@ -4,7 +4,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-
+exports.crypto = require('crypto');
 
 // DB Setup 
 // const uri = process.env.DB_URI;
@@ -29,7 +29,7 @@ app.use(express.urlencoded({extended: false})); //express to recognize the incom
 
 // Router Settings 
 
-app.use('/api/main', require("./routes/main"));
+app.use('/api/main', require("./routes/main.js"));
 
 
 
