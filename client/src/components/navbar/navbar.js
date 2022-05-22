@@ -5,9 +5,9 @@ function Navbar(){
     return (
       <> 
       <div className="navbar-box">
-      <h1> CSP </h1>
+      <h1> Implementing the Oblivius Transfer Protocol </h1>
 
-      <p> Welcome to CSP. </p>
+      <p> Exploring a cryptographic primitive </p>
       </div>
       </>
     );
