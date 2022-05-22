@@ -1,5 +1,6 @@
 import "./receiver.css"
 import React, { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Receiver(){
@@ -22,7 +23,9 @@ function Receiver(){
         return String.fromCharCode(c);
     });
 }
-    const [otinput, setOTinput] = useState(-1)
+    const [otinput, setOTinput] = useState(-1);
+    const [makeVisible, setMakeVisible] = useState(0);
+    const navigate = useNavigate();
     let data;
     let N;
     let e;
@@ -67,6 +70,8 @@ function Receiver(){
         catch(error) {
             console.log(error);
         }
+
+        setMakeVisible(1)
     }
 
     function Button(props){
@@ -81,16 +86,28 @@ function Receiver(){
             </>
         );
     }
+
+    function RedirectButton(props){
+        const handleClick = () => {
+            navigate("/realFiles")
+        }
+        return (
+            <>
+            <button className="redirect-button" onClick={handleClick}> Now try it with real files </button>
+            </>
+        )
+    }
     return (
       <> 
-      <h2> Select input <i> i </i></h2>
+      <h2> Exploring the protocol </h2>
+      <h3> Select input <i> i </i></h3>
       <Button value="0"> 0 </Button>
       <Button value="1"> 1 </Button>
       
 
       <button type="submit" onClick={handleSubmit}  > Submit </button>
 
-
+      { makeVisible ? <RedirectButton /> : null}
       </>
     );
   }
